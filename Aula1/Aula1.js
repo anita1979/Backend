@@ -55,8 +55,43 @@ function nomeMesPorExtenso(numeroMes) {
 }
 
 function calculadora(numero1,numero2){
-    var numero1=10;
+    var numero1=15;
     var numero2=10;
+    
+    var soma=numero1 + numero2;
+    console.log("Soma:" + soma);
+    
+    var multiplicacao= numero1 * numero2;
+    console.log("Multiplicação :" +multiplicacao);
+
+    var subtracao=numero1-numero2;
+    console.log("Subtração: " + subtracao);
+
+    var divicao=numero1/numero2;
+    console.log("Divição: "+ divicao);
+
+}
+
+function multiplos(num1){
+   for(i=0;i<=20;i++){
+    if (i % num1 ==  0) {
+        console.log(i);
+    }
+   }
+}
+
+function somaPrimeiros(){
+    var soma =0;
+        for(i=1;i<=100;i++){
+         soma = soma +i;
+        }
+        console.log(soma);
+}
+
+function fatorial(n){
+    var 
+
+
 }
 
 function main() {
@@ -74,7 +109,9 @@ function main() {
     }
 
     nomeMesPorExtenso(6);
-
+    calculadora(); 
+    multiplos(5);
+    somaPrimeiros(100);
 }
 
 // chamar a função
