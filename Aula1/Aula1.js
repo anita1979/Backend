@@ -89,7 +89,10 @@ function somaPrimeiros(){
 }
 
 function fatorial(n){
-    var 
+    var fact=n;
+    for(i=0;i<100;i++){
+
+    }
 
 
 }
