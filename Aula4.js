@@ -60,5 +60,43 @@ array.forEach(function(item) {
 
 */
 
+function Emitter(){
+    this.events = {};
+}
+Emitter.prototype.on = function(type,listener){
+    if(this.events[type] == undefined){
+        this.events[type] = [];
+    }
+        this.events[type].push(listener);
+    
+}
+/*
+Emitter.prototype.emit = function(type){
+    if(this.events[type] != undefined){
+    }
+        this.events[type].forEach(listener){
+            listener();
+           
+        });
+
+}*/
+module.exports = Emitter;
+
+var Emitter = require ("./emitter");
+//var Emitter = require("events");
+var eventConstants = require('./constants');
+var emtr = new Emitter();
+
+console.log(eventConstants.events.GREET);
+
+emtr.on(eventConstants.FILESAVED, function(){
+    console.log("Somwhere, someone said hello");
+});
+emtr.on(eventConstants.GREET, function(){
+        console.log("A greeting occured");
+
+});
+emtr.emit(enentConstants.greet);
+emtr.emit(enentConstants.FILESAVED);
 
 
