@@ -1,0 +1,19 @@
+{
+   "person1": {
+        "Id" : "1",
+        "firstname": "Anita",
+        "lastname": "Pereira",
+        "Gender":"F",
+        "Age": "39",
+        "Profession": "Estudante"
+    },
+
+    "person2": {
+        "Id" : "2",
+        "firstname": "Carlota",
+        "lastname": "Rodrigues",
+        "Gender":"F",
+        "Age": "18",
+        "Profession": "Estudante"
+    }
+}
