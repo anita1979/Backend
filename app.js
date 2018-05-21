@@ -1,46 +1,28 @@
-const express = require('express');
-const app = express();
-const bodyParser = require('body-parser');
+var express = require('express');
+var bodyParser = require('body-parser');
+var session = require('express-session');
+var cookieParser = require('cookie-parser');
+var passport = require('passport');
+var flash = require('connect-flash');
+var app = express();
 
-var fs = require('fs');
-  
+app.use(cookieParser()); // read cookies (needed for auth)
+app.use(bodyParser.json()); // get information from html forms
+app.use(bodyParser.urlencoded({ extended: true }));
+app.set('view engine', 'ejs'); // set up ejs for templating
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: false}));
+app.use(session({ secret: 'keyboard cat', cookie: { maxAge: 60000 }})); // Use the session middleware
+app.use(passport.initialize());
+app.use(passport.session()); // persistent login sessions
+app.use(flash()); // use connect-flash for flash messages stored in session
 
-//função
-function readFile(fileName){
-    var file = fs.readFileSync(fileName, 'utf-8');
-    return file;
-}
-/*
-app.get('/',function(req, res){
-    
-    const body = 'Muito obrigada';
-  
-    res.writeHead(200,{
-    'Content-Length': Buffer.byteLength(body),
-    'Content-Type': 'text/plain'   
-    });
-    res.end(body);
-});
-*/
-app.get('/', function(req, res) {
-    var data = new Date();
-    var html = fs.readFileSync("./index.html",'utf-8');
-    var htmlAlt = html.replace("{template}", data);
-    const body = htmlAlt;
-    res.writeHead(200, {
-        'Content-Length' : Buffer.byteLength(body),
-        'Content-Type' : 'html'
-    });
-    res.end(body);
-});
+// routes ======================================================================
+require('./config/passport')(passport); // pass passport for configuration
+require('./app/routes.js')(app, passport); // load our routes and pass in our app and fully configured passport
 
-
-
-
-app.listen(3000, function(){
-    console.log('Example app listening on port 3000!');
-    fs.writeFileSync("log.txt", "");
+// express server
+var server = app.listen(8081, function () {
+    var host = server.address().address
+    var port = server.address().port  
+    console.log("Example app listening at http://%s:%s", host, port);   
 });
